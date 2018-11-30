@@ -8,6 +8,7 @@ import { LoginComponent } from './login.component';
 /* NgRx */
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './state/user.reducer';
+import {AppMaterialModule} from '../app-material.module';
 
 const userRoutes: Routes = [
   { path: 'login', component: LoginComponent }
@@ -16,6 +17,7 @@ const userRoutes: Routes = [
 @NgModule({
   imports: [
     SharedModule,
+    AppMaterialModule,
     RouterModule.forChild(userRoutes),
     StoreModule.forFeature('users', reducer)
   ],

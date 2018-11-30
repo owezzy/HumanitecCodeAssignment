@@ -1,3 +1,9 @@
 .main-content {
   margin-top: 25px;
 }
+
+.error {
+  color: red
+}
+
+div[fxLayout] {margin-top: 32px;}

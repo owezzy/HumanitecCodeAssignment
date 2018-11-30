@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../user/auth.service';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -23,7 +25,15 @@ export class MenuComponent implements OnInit {
   }
 
   constructor(private router: Router,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private matIconRegistry: MatIconRegistry,
+              private domSanitizer: DomSanitizer
+  ) {
+    this.matIconRegistry.addSvgIcon(
+      'owen1',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/owen1.svg')
+    );
+  }
 
 
   ngOnInit() {

@@ -18,6 +18,9 @@ import {AppRoutingModule} from './app-routing.module';
 import {UserModule} from './user/user.module';
 import {ProgramData} from './programs/program-data';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {SharedModule} from './shared/shared.module';
+import {AppMaterialModule} from './app-material.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     HttpClientInMemoryWebApiModule.forRoot(ProgramData),
     UserModule,
+    SharedModule,
+    AppMaterialModule,
+    FlexLayoutModule,
     AppRoutingModule,
     StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({
