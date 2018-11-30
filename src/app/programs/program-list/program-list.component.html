@@ -1,3 +1,63 @@
-<p>
-  program-list works!
-</p>
+
+<!--<div>-->
+  <!--<mat-card>-->
+    <!--<mat-card-title>-->
+      <!--{{pageTitle}}-->
+    <!--</mat-card-title>-->
+    <!--<mat-card-content >-->
+        <!--<mat-list *ngIf="programs$ | async as programs" >-->
+          <!--<button mat-list-item-->
+                  <!--*ngFor="let program of programs"-->
+                  <!--[ngClass]="{'active': program?.id === selectedProgram?.id}"-->
+                  <!--(click)="programSelected(program)">{{ program.name }}-->
+            <!--<ng-container *ngIf="displayCode">-->
+              <!--({{ program.programCode }})-->
+            <!--</ng-container>-->
+          <!--</button>-->
+        <!--</mat-list>-->
+    <!--</mat-card-content>-->
+
+  <!--</mat-card>-->
+<!--</div>-->
+
+<mat-card>
+
+  <div class="card-header">
+  {{pageTitle}}
+  </div>
+
+  <div class="card-body" *ngIf="programs$ | async as programs">
+    <div class="list-group">
+      <button class="list-group-item list-group-item-action rounded-0"
+              *ngFor="let program of programs"
+              [ngClass]="{'active': program?.id === selectedProgram?.id}"
+              (click)="programSelected(program)">{{ program.name }}
+        <ng-container *ngIf="displayCode">
+          ({{ program.programCode }})
+        </ng-container>
+      </button>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <div class="row">
+      <div class="form-check col-md-7">
+        <label>
+          <input class="form-check-input"
+                 type="checkbox"
+                 (change)="checkChanged($event.target.checked)"
+                 [checked]="displayCode">
+          Display Product Code
+        </label>
+      </div>
+      <div class="col-md-4 text-right">
+        <button class="btn btn-primary" (click)="newProgram()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</mat-card>
+<div *ngIf="errorMessage$ | async as errorMessage" class="alert alert-danger">
+  Error: {{ errorMessage }}
+</div>

@@ -8,7 +8,7 @@ import {ProgramActivityComponent} from './program-activity/program-activity.comp
 import {AppMaterialModule} from '../app-material.module';
 import {SharedComponentsModule} from '../shared-components.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { ProgramComponent } from './program.component';
+import { ProgramComponent } from './program/program.component';
 
 
 const programRoutes: Routes = [

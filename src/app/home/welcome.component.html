@@ -1,23 +1,27 @@
-﻿<div class="card">
-  <div class="card-header">
-    {{pageTitle}}
-  </div>
-  <div class="card-body">
-    <div class="row">
-      <div class="mx-auto">
-        <img src="../../assets/logo.jpg" class="img-responsive" style="max-height:300px;padding-bottom:50px" />
-      </div>
-    </div>
-    <div class="row justify-content-center">
-      <div class="text-center col-md-12">Developed by:</div>
-      <div class="col-4" style="width: 200px;">
-        <h3 class="text-center">Owen Adira</h3>
-
-        <div class="text-center">@owen_adira</div>
-        <div class="text-center">
-          <a href="http://owezzy.github.io">owezzy.github.io</a>
+﻿<div fxLayout="row">
+  <div fxFlex></div>
+    <div fxFlex="55%">
+      <mat-card align="center">
+        <mat-card-title align="center">
+          {{pageTitle}}
+        </mat-card-title>
+      <div class="row">
+        <div class="mx-auto">
+          <img src="../../assets/logo.jpg" class="img-responsive" style="max-height:300px;padding-bottom:50px"/>
         </div>
       </div>
+      <mat-card-content>
+        <h4> Developed by:</h4>
+        <h5 >Owen Adira</h5>
+        <h5 >@owen_adira</h5>
+        <h5 >
+          <a href="http://owezzy.github.io">owezzy.github.io</a>
+        </h5>
+      </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" routerLink="/login">LOGIN</button>
+        </mat-card-actions>
+      </mat-card>
     </div>
-  </div>
+  <div fxFlex></div>
 </div>
