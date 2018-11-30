@@ -1,10 +1,36 @@
-# HumanitecCodeAssignment
+# Humanitec Code Assignment
+> Create an interface to list Programs (workflowlevel1) and their related Activities
+  (workflowlevel2) from our api using redux for Angular (ngrx).
+
+A brief description of your project, what it is used for and how does life get
+awesome when someone starts to use it.
+
+## Installing / Getting started
+
+A quick introduction of the minimal setup you need to get the application up &
+running.
+
+```shell
+$ git clone https://github.com/owezzy/HumanitecCodeAssignment.git
+$ cd HumanitecCodeAssignment && npm i
+$ npm start 
+```
+The first command clones a copy of the app from github repo to your local machine.
+The second navigates to the root of the application and installs the applications dependencies.
+Finally the last command starts an Angular Live Development Server listening on localhost:7000, open your browser on http://localhost:7000/ 
+
+### Initial Configuration
+Make sure you have NodeJs already install, version 8 and above and version 5 and above for npm (node package manager) .
+
+## Features
+
+* Uses reactive forms
+* One way data flow using NgRx
+* Angular Material for views
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.7.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
