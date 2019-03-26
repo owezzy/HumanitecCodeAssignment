@@ -125,6 +125,37 @@
           }
         }
       }
+    },
+    "activities": {
+      "root": "libs/activities",
+      "sourceRoot": "libs/activities/src",
+      "projectType": "library",
+      "prefix": "humanitec",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/activities/src/test.ts",
+            "tsConfig": "libs/activities/tsconfig.spec.json",
+            "karmaConfig": "libs/activities/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/activities/tsconfig.lib.json",
+              "libs/activities/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
