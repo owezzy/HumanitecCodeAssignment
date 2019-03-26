@@ -1,0 +1,7 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [true, "attribute", "humanitec", "camelCase"],
+    "component-selector": [true, "element", "humanitec", "kebab-case"]
+  }
+}
