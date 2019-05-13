@@ -26,7 +26,10 @@
               "apps/programs/src/favicon.ico",
               "apps/programs/src/assets"
             ],
-            "styles": ["apps/programs/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/programs/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -80,7 +83,10 @@
             "polyfills": "apps/programs/src/polyfills.ts",
             "tsConfig": "apps/programs/tsconfig.spec.json",
             "karmaConfig": "apps/programs/karma.conf.js",
-            "styles": ["apps/programs/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/programs/src/styles.scss"
+            ],
             "scripts": [],
             "assets": [
               "apps/programs/src/favicon.ico",
@@ -146,6 +152,37 @@
             "tsConfig": [
               "libs/activities/tsconfig.lib.json",
               "libs/activities/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "material": {
+      "root": "libs/material",
+      "sourceRoot": "libs/material/src",
+      "projectType": "library",
+      "prefix": "humanitec",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/material/src/test.ts",
+            "tsConfig": "libs/material/tsconfig.spec.json",
+            "karmaConfig": "libs/material/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/material/tsconfig.lib.json",
+              "libs/material/tsconfig.spec.json"
             ],
             "exclude": ["**/node_modules/**"]
           }

@@ -13,7 +13,8 @@
     "lib": ["es2017", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@humanitec/activities": ["libs/activities/src/index.ts"]
+      "@humanitec/activities": ["libs/activities/src/index.ts"],
+      "@humanitec/material": ["libs/material/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

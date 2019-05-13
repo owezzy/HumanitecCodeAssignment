@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NxModule } from '@nrwl/nx';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, NxModule.forRoot()],
+  imports: [
+    BrowserModule,
+    NxModule.forRoot(),
+    BrowserAnimationsModule,
+
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
