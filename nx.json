@@ -8,16 +8,28 @@
     "nx.json": "*"
   },
   "projects": {
-    "programs": {
+    "dashboard": {
       "tags": []
     },
-    "programs-e2e": {
+    "dashboard-e2e": {
       "tags": []
     },
     "activities": {
       "tags": []
     },
     "material": {
+      "tags": []
+    },
+    "core-data": {
+      "tags": []
+    },
+    "ui-toolbar": {
+      "tags": []
+    },
+    "programs": {
+      "tags": []
+    },
+    "ui-login": {
       "tags": []
     }
   }

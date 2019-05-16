@@ -8,14 +8,17 @@ import { ProgramsComponent } from './programs.component';
 import { ProgramsDetailsComponent } from './programs-details/programs-details.component';
 import { ProgramsListComponent } from './programs-list/programs-list.component';
 import { ProgramsRoutingModule } from './programs-routing.module';
+import { CoreDataModule } from '@humanitec/core-data';
 
 @NgModule({
   imports: [
     CommonModule,
+    ProgramsRoutingModule,
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    ProgramsRoutingModule
+    CoreDataModule
+
   ],
   declarations: [
     ProgramsComponent,

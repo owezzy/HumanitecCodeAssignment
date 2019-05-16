@@ -8,7 +8,7 @@ import {
   initialState as activitiesInitialState,
   activitiesReducer
 } from './+state/activities.reducer';
-import { ActivitiesEffects } from './+state/activities.effects';
+import { ActivitiesEffects } from '@humanitec/activities';
 
 @NgModule({
   imports: [
