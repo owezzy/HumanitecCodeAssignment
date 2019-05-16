@@ -1,5 +1,5 @@
-<humanitec-toolbar [isLoggedIn]="isLoggedIn" [title]="title" [sidenav]="sidenav"
-                   (logout)="logout($event)"></humanitec-toolbar>
+<humanitec-toolbar [isLoggedIn]="isLoggedIn" [title]="title" [sidenav]="sidenav" (logout)="logout($event)"></humanitec-toolbar>
+
 <mat-sidenav-container>
   <mat-sidenav [opened]="isSidenavOpen(sidenav, isLoggedIn)" #sidenav mode="side" class="app-sidenav">
     <nav>
@@ -9,12 +9,10 @@
         {{link.label}}
       </a>
     </nav>
-
   </mat-sidenav>
 
   <div class="app-content">
     <h1>Available {{ title }}!</h1>
     <router-outlet></router-outlet>
-
   </div>
 </mat-sidenav-container>

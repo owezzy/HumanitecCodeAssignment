@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../../../libs/core-data/src/lib/auth/auth.service';
+import { AuthService } from '@humanitec/core-data';
 
 @Component({
   selector: 'humanitec-root',
@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
       })
   }
 
-  logout($event: any){
+  logout(){
     this.authService.logout();
   }
 
