@@ -4,7 +4,7 @@ import { ProgramsComponent } from './programs.component';
 
 const routes: Routes = [
   { path: '', component: ProgramsComponent }
-]
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
