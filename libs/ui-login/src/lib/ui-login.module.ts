@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from '@humanitec/ui-login';
+import { LoginComponent } from './login/login.component';
+import { MaterialModule } from '@humanitec/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule],
-  declarations: [LoginComponent]
+  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  declarations: [LoginComponent],
+  // exports: [LoginComponent]
 })
 export class UiLoginModule {}
