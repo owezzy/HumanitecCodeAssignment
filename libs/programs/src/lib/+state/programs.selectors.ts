@@ -1,43 +1,62 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 import { PROGRAMS_FEATURE_KEY, ProgramsState } from './programs.reducer';
+import * as fromPrograms from './programs.reducer'
+import { from } from 'rxjs';
+import { ProgramModel } from '@humanitec/programs';
 
-// Lookup the 'Programs' feature state managed by NgRx
-const getProgramsState = createFeatureSelector<ProgramsState>(
+export interface AppState {
+  programs: fromPrograms.ProgramsState
+}
+
+export  const reducer: ActionReducerMap<AppState> = {
+  programs: fromPrograms.programsReducer
+};
+
+// selectors, Lookup the 'Programs' feature state managed by NgRx
+export const getProgramsState = createFeatureSelector<fromPrograms.ProgramsState>(
   PROGRAMS_FEATURE_KEY
 );
 
-const getLoaded = createSelector(
+const selectProgramId = createSelector(
   getProgramsState,
-  (state: ProgramsState) => state.loaded
-);
-const getError = createSelector(
-  getProgramsState,
-  (state: ProgramsState) => state.error
+  fromPrograms.selectedProgramIds
 );
 
-const getAllPrograms = createSelector(
+const selectProgramsEntities = createSelector(
   getProgramsState,
-  getLoaded,
-  (state: ProgramsState, isLoaded) => {
-    return isLoaded ? state.list : [];
-  }
+  fromPrograms.selectedProgramEntities
 );
-const getSelectedId = createSelector(
+
+const selectAllPrograms = createSelector(
   getProgramsState,
-  (state: ProgramsState) => state.selectedId
+  fromPrograms.selectAllPrograms
 );
-const getSelectedPrograms = createSelector(
-  getAllPrograms,
-  getSelectedId,
-  (programs, id) => {
-    const result = programs.find(it => it['id'] === id);
-    return result ? Object.assign({}, result) : undefined;
+
+const selectCurrentProgramId = createSelector(
+  getProgramsState,
+  fromPrograms.getSelectedProgramId
+);
+
+const emptyProgram: ProgramModel = {
+  id: null,
+  title: '',
+  detail: '',
+  activityId: null
+}
+
+const selectCurrentProgram = createSelector(
+  selectProgramsEntities,
+  selectCurrentProgramId,
+  (programEntities, programId) => {
+    console.log('SELECTOR', programId)
+    return programId? programEntities[programId]: emptyProgram
   }
-);
+)
 
 export const programsQuery = {
-  getLoaded,
-  getError,
-  getAllPrograms,
-  getSelectedPrograms
+  selectProgramId,
+  selectProgramsEntities,
+  selectAllPrograms,
+  selectCurrentProgramId,
+  selectCurrentProgram
 };

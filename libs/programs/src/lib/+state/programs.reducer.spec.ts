@@ -1,7 +1,6 @@
 import { ProgramsLoaded } from './programs.actions';
 import {
   ProgramsState,
-  Entity,
   initialState,
   programsReducer
 } from './programs.reducer';
@@ -11,7 +10,7 @@ describe('Programs Reducer', () => {
   let createPrograms;
 
   beforeEach(() => {
-    createPrograms = (id: string, name = ''): Entity => ({
+    createPrograms = (id: string, name = ''): => ({
       id,
       name: name || `name-${id}`
     });

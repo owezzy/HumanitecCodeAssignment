@@ -62,9 +62,9 @@ describe('ProgramsFacade', () => {
     });
 
     /**
-     * The initially generated facade::loadAll() returns empty array
+     * The initially generated facade::getPrograms() returns empty array
      */
-    it('loadAll() should return empty list with loaded == true', async done => {
+    it('getPrograms() should return empty list with loaded == true', async done => {
       try {
         let list = await readFirst(facade.allPrograms$);
         let isLoaded = await readFirst(facade.loaded$);
@@ -72,7 +72,7 @@ describe('ProgramsFacade', () => {
         expect(list.length).toBe(0);
         expect(isLoaded).toBe(false);
 
-        facade.loadAll();
+        facade.getPrograms();
 
         list = await readFirst(facade.allPrograms$);
         isLoaded = await readFirst(facade.loaded$);
