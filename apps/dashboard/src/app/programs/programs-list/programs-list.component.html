@@ -1,3 +1,18 @@
-<p>
-  programs-list works!
-</p>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+    <h1>Programs</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list [@listAnimation]="prepareListState()" [@.disabled]="animationsDisabled">
+      <mat-list-item *ngFor="let program of programs; trackBy: trackProgram" (click)="selected.emit(program)" class="record">
+        <h3>{{program.title}}</h3>
+        <p mat-line>{{program.detail}}</p>
+        <button *ngIf="!readonly" mat-icon-button (click)="deleted.emit(program);$event.stopImmediatePropagation();">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
