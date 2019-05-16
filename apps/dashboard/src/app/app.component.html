@@ -1,4 +1,4 @@
-<humanitec-toolbar [isLoggedIn]="isLoggedIn" [title]="title" [sidenav]="sidenav" (logout)="logout($event)"></humanitec-toolbar>
+<ui-toolbar [isLoggedIn]="isLoggedIn" [title]="title" [sidenav]="sidenav" (logout)="logout($event)"></ui-toolbar>
 
 <mat-sidenav-container>
   <mat-sidenav [opened]="isSidenavOpen(sidenav, isLoggedIn)" #sidenav mode="side" class="app-sidenav">

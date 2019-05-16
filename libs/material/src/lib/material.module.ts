@@ -54,6 +54,7 @@ import {
     MatSnackBarModule,
     MatTableModule,
     MatToolbarModule,
-    MatButtonToggleModule]
+    MatButtonToggleModule
+  ]
 })
 export class MaterialModule {}

@@ -10,11 +10,12 @@ import { MaterialModule } from '@humanitec/material';
 import { CoreDataModule } from '@humanitec/core-data';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UiToolbarModule } from '@humanitec/ui-toolbar';
-// import { UiLoginModule } from '@humanitec/ui-login';
+import {  UiToolbarModule } from '@humanitec/ui-toolbar';
+import { UiLoginModule } from '@humanitec/ui-login';
+
 
 @NgModule({
-  declarations: [AppComponent, ],
+  declarations: [AppComponent,  ],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -26,7 +27,7 @@ import { UiToolbarModule } from '@humanitec/ui-toolbar';
     ReactiveFormsModule,
     MaterialModule,
     UiToolbarModule,
-    //UiLoginModule,
+    UiLoginModule,
     CoreDataModule,
   ],
   providers: [],
