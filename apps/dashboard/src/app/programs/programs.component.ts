@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProgramModel, ProgramsFacade } from '@humanitec/programs';
-import { NotificationService } from '@humanitec/core-data';
-import { ActivityModel, ActivityService } from '@humanitec/activities';
+import { ActivityModel } from '@humanitec/activities';
 
 @Component({
   selector: 'humanitec-programs',
@@ -11,72 +10,36 @@ import { ActivityModel, ActivityService } from '@humanitec/activities';
 })
 export class ProgramsComponent implements OnInit {
 
-  programs$: Observable<ProgramModel[]>;
-  activities$: Observable<ActivityModel[]>;
-  currentProgram$: Observable<ProgramModel>;
+  programs$: Observable<ProgramModel[]> = this.programsFacade.allPrograms$;
+  // activities$: Observable<ActivityModel[]> = this.programsFacade.allActivities$
+  currentProgram$: Observable<ProgramModel> =this.programsFacade.currentProgram$;
 
-  constructor(
-    private activityService: ActivityService,
-    private facade: ProgramsFacade,
-    private ns: NotificationService
-  )
-  {
-    this.programs$ = facade.programs$;
-    this.currentProgram$ = facade.currentProgram$
-  }
+  constructor(private programsFacade: ProgramsFacade) {}
 
   ngOnInit() {
-    this.getPrograms();
+    this.programsFacade.loadPrograms();
+    this.programsFacade.mutations$.subscribe(_ => this.resetCurrentProgram());
     this.resetCurrentProgram();
-    this.getActivities();
+     //this.getActivities();
   }
 
   resetCurrentProgram() {
-    this.facade.selectProgram(null)
+    this.selectProgram({id: null})
   }
 
   selectProgram(program) {
-    this.facade.selectProgram(program.id);
+    this.programsFacade.selectProgram(program.id);
   }
 
-  cancel(program) {
-    this.resetCurrentProgram();
-  }
-
-  getActivities(){
-    this.activities$ = this.activityService.all();
-  }
-
-  getPrograms() {
-    this.facade.getPrograms();
-  }
-
-  saveProgram(program) {
+  saveProgram(program){
     if (!program.id) {
-      this.createProgram(program);
+      this.programsFacade.addProgram(program);
     } else {
-      this.updateProgram(program);
+      this.programsFacade.deleteProgram(program)
     }
   }
 
-  createProgram(program) {
-    this.facade.createProgram(program);
-    // delete later
-    this.ns.emit('ProgramModel created!');
-    this.resetCurrentProgram();
-  }
-
-  updateProgram(program) {
-    this.facade.updateProgram(program);
-    // delete later
-    this.ns.emit('Project updated!');
-    this.resetCurrentProgram();
-  }
-
   deleteProgram(program) {
-    this.facade.deleteProgram(program);
-    // delete later
-    this.ns.emit('ProgramModel deleted!');
-    this.resetCurrentProgram();
+    this.programsFacade.deleteProgram(program)
   }
 }

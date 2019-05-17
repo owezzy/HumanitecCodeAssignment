@@ -12,6 +12,7 @@ export class ProgramsDetailsComponent {
   selectedProgram: ProgramModel;
   @Output() saved = new EventEmitter();
   @Output() cancelled = new EventEmitter();
+
   @Input() activities: ActivityModel[];
   @Input() set program(value: ProgramModel) {
     if (value) {this.originalTitle = value.title;}

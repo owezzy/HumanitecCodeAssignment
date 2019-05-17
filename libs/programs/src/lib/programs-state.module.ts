@@ -2,21 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import {
-  PROGRAMS_FEATURE_KEY,
-  initialState as programsInitialState,
-  programsReducer
-} from './+state/programs.reducer';
+import  {reducer}   from '@humanitec/programs';
 import { ProgramsEffects } from './+state/programs.effects';
 import { ProgramsFacade } from '@humanitec/programs';
+import { NxModule } from '@nrwl/nx';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   imports: [
     CommonModule,
-    StoreModule.forFeature(PROGRAMS_FEATURE_KEY, programsReducer, {
-      initialState: programsInitialState
-    }),
-    EffectsModule.forFeature([ProgramsEffects])
+    NxModule.forRoot() ,
+    StoreModule.forRoot(reducer),
+    StoreDevtoolsModule.instrument({maxAge: 10}),
+    EffectsModule.forRoot([ProgramsEffects])
   ],
   providers: [ProgramsFacade]
 })

@@ -9,6 +9,7 @@ import { ProgramsDetailsComponent } from './programs-details/programs-details.co
 import { ProgramsListComponent } from './programs-list/programs-list.component';
 import { ProgramsRoutingModule } from './programs-routing.module';
 import { CoreDataModule } from '@humanitec/core-data';
+import { ProgramsStateModule } from '@humanitec/programs';
 
 @NgModule({
   imports: [
@@ -17,14 +18,18 @@ import { CoreDataModule } from '@humanitec/core-data';
     MaterialModule,
     ReactiveFormsModule,
     FormsModule,
-    CoreDataModule
+    CoreDataModule,
+    ProgramsStateModule
 
   ],
   declarations: [
     ProgramsComponent,
     ProgramsListComponent,
     ProgramsDetailsComponent,
-  ]
 
+  ],
+providers:[
+
+]
 })
 export class ProgramsModule { }

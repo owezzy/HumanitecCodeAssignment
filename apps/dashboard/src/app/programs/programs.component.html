@@ -9,7 +9,7 @@
     <div class="col-50">
       <humanitec-programs-details>
         [programs]="programs$ | async"
-        [activities]="activities$ | async"
+<!--        [activities]="activities$ | async"-->
         (saved)=savedProgram($event)"
         (cancelled)=resetCurrentProgram($event)"
       </humanitec-programs-details>
