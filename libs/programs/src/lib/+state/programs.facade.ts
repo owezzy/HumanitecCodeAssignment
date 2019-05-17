@@ -1,45 +1,48 @@
 import { Injectable } from '@angular/core';
+import { ActionsSubject, select, Store } from '@ngrx/store';
 
-import { select, Store } from '@ngrx/store';
+import { filter } from 'rxjs/operators';
 
+import {selectAllPrograms } from '@humanitec/programs';
+import {selectCurrentProgram} from './programs.selectors';
 import { ProgramsState } from './programs.reducer';
-import { programsQuery } from '@humanitec/programs';
-import { AddProgram, DeleteProgram, LoadPrograms, SelectProgram, UpdateProgram } from './programs.actions';
-import { Observable } from 'rxjs';
-import { ProgramModel } from '@humanitec/programs';
+import * as ProgramsActions from './programs.actions';
+import { ProgramsActionTypes } from './programs.actions';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ProgramsFacade {
-  programs$: Observable<ProgramModel[]>;
-  currentProgram$: Observable<ProgramModel>;
+  allPrograms$ = this.store.pipe(select(selectAllPrograms));
+  currentProgram$ = this.store.pipe(select(selectCurrentProgram));
 
+  mutations$ = this.actions$
+    .pipe(
+      filter(action =>
+          action.type === ProgramsActionTypes.AddProgram
+           || action.type === ProgramsActionTypes.UpdateProgram
+           || action.type === ProgramsActionTypes.DeleteProgram
+      )
+    );
 
-  constructor(private store: Store<ProgramsState>) {
-    this.programs$ = store.pipe(select(programsQuery.selectAllPrograms));
-    this.currentProgram$ = store.pipe(select(programsQuery.selectCurrentProgram));
+  constructor(private store: Store<ProgramsState>, private actions$: ActionsSubject) { }
 
+  selectProgram(programId) {
+    this.store.dispatch(new ProgramsActions.ProgramSelected(programId));
+  }
+  loadPrograms() {
+    this.store.dispatch(new ProgramsActions.LoadPrograms());
   }
 
-  getPrograms() {
-    this.store.dispatch(new LoadPrograms());
+  addProgram(program) {
+    this.store.dispatch(new ProgramsActions.AddProgram(program));
   }
-
-  selectProgram(program) {
-    this.store.dispatch(new SelectProgram(program.id));
-  }
-
-  createProgram(program) {
-    this.store.dispatch(new AddProgram(program));
-  }
-
   updateProgram(program) {
-    this.store.dispatch(new UpdateProgram(program));
+    this.store.dispatch(new ProgramsActions.UpdateProgram(program));
   }
 
   deleteProgram(program) {
-    this.store.dispatch(new DeleteProgram(program));
+    this.store.dispatch(new ProgramsActions.DeleteProgram(program));
   }
 }

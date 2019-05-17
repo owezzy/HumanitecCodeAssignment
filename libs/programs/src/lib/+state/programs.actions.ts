@@ -3,6 +3,7 @@ import { ProgramModel } from '@humanitec/programs';
 
 export enum ProgramsActionTypes {
   ProgramSelected = '[Programs] Selected',
+  ProgramAction = '[Programs] Action',
 
   LoadPrograms = '[Programs] Load Programs',
   ProgramsLoaded = '[Programs] Programs Loaded',
@@ -18,7 +19,11 @@ export enum ProgramsActionTypes {
   ProgramDeleted = '[Programs] Deleted Program',
 }
 
-export class SelectProgram implements Action {
+export class Programs implements Action {
+  readonly type = ProgramsActionTypes.ProgramAction;
+}
+
+export class ProgramSelected implements Action {
   readonly type = ProgramsActionTypes.ProgramSelected;
   constructor(public payload) {  }
 }
@@ -67,7 +72,9 @@ export class ProgramDeleted implements Action {
   constructor(public payload: ProgramModel) {  }
 }
 
-export type ProgramsAction = LoadPrograms
+export type ProgramsAction = Programs
+  | ProgramSelected
+  | LoadPrograms
   | ProgramsLoaded
   | ProgramsLoadError
   | AddProgram
@@ -77,15 +84,3 @@ export type ProgramsAction = LoadPrograms
   | DeleteProgram
   | ProgramDeleted
   ;
-
-export const fromProgramsActions = {
-  LoadPrograms,
-  ProgramsLoaded,
-  ProgramsLoadError,
-  AddProgram,
-  ProgramAdded,
-  UpdateProgram,
-  ProgramUpdated,
-  DeleteProgram,
-  ProgramDeleted
-};

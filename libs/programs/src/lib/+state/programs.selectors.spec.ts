@@ -1,4 +1,3 @@
-import { Entity, ProgramsState } from './programs.reducer';
 import { programsQuery } from './programs.selectors';
 
 describe('Programs Selectors', () => {
