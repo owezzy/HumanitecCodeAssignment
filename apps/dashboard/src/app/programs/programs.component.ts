@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProgramModel, ProgramsFacade } from '@humanitec/programs';
-import { ActivityModel } from '@humanitec/activities';
+import { ActivityModel,  } from '@humanitec/activities';
 
 @Component({
   selector: 'humanitec-programs',
@@ -11,7 +11,7 @@ import { ActivityModel } from '@humanitec/activities';
 export class ProgramsComponent implements OnInit {
 
   programs$: Observable<ProgramModel[]> = this.programsFacade.allPrograms$;
-  // activities$: Observable<ActivityModel[]> = this.programsFacade.allActivities$
+  //activities$: Observable<ActivityModel[]> = this.activitiesFacade.allActivities$
   currentProgram$: Observable<ProgramModel> =this.programsFacade.currentProgram$;
 
   constructor(private programsFacade: ProgramsFacade) {}
@@ -20,7 +20,7 @@ export class ProgramsComponent implements OnInit {
     this.programsFacade.loadPrograms();
     this.programsFacade.mutations$.subscribe(_ => this.resetCurrentProgram());
     this.resetCurrentProgram();
-     //this.getActivities();
+    //this.getActivities();
   }
 
   resetCurrentProgram() {
@@ -35,7 +35,7 @@ export class ProgramsComponent implements OnInit {
     if (!program.id) {
       this.programsFacade.addProgram(program);
     } else {
-      this.programsFacade.deleteProgram(program)
+      this.programsFacade.updateProgram(program)
     }
   }
 

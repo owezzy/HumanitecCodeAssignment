@@ -2,15 +2,15 @@
   <div class="col-50">
     <humanitec-programs-list>
       [programs]="programs$ | async"
-      (selected)=selectedProgram($event)"
-      (deleted)=deletedProgram($event)"
+      (selected)=selectProgram($event)"
+      (deleted)=deleteProgram($event)"
     </humanitec-programs-list>
 
     <div class="col-50">
       <humanitec-programs-details>
-        [programs]="programs$ | async"
-<!--        [activities]="activities$ | async"-->
-        (saved)=savedProgram($event)"
+        [program]="currentProgram$ | async"
+        [activities]="activities$ | async"
+        (saved)=saveProgram($event)"
         (cancelled)=resetCurrentProgram($event)"
       </humanitec-programs-details>
     </div>

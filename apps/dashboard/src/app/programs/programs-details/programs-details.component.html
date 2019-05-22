@@ -10,20 +10,24 @@
   <form (submit)="saved.emit(selectedProgram)">
     <mat-card-content>
       <mat-form-field class="full-width">
-        <input matInput placeholder="Title" [(ngModel)]="selectedProgram.title" type="text" name="title">
+        <label>
+          <input matInput placeholder="Title" [(ngModel)]="selectedProgram.title" type="text" name="title">
+        </label>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <textarea matInput placeholder="Details" [(ngModel)]="selectedProgram.detail" type="text" name="detail"></textarea>
+        <label>
+          <textarea matInput placeholder="Details" [(ngModel)]="selectedProgram.detail" type="text" name="detail"></textarea>
+        </label>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-select placeholder="Activities" [(ngModel)]="selectedProgram.activityId" name="activityId">
+<!--      <mat-form-field class="full-width">-->
+<!--        <mat-select placeholder="Activities" [(ngModel)]="selectedProgram.activityId" name="activityId">-->
 <!--          <mat-option *ngFor="let activity of activities" [value]="activity.id">-->
 <!--            {{activity.title}}-->
 <!--          </mat-option>-->
-        </mat-select>
-      </mat-form-field>
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
 
     </mat-card-content>
     <mat-card-actions>
