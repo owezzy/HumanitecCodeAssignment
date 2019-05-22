@@ -1,0 +1,54 @@
+{
+  "activities": [
+    {
+      "id": "2",
+      "name": "CEO"
+    },
+    {
+      "id": "5",
+      "name": "Student"
+    },
+    {
+      "id": "6",
+      "name": "Quarterback"
+    },
+    {
+      "id": "7",
+      "name": "Bassist"
+    },
+    {
+      "id": "8",
+      "name": "Developer"
+    },
+    {
+      "id": "9",
+      "name": "Handyman"
+    }
+  ],
+  "programs": [
+    {
+      "id": "1",
+      "title": "Project One",
+      "details": "This is a sample project",
+      "activityId": "1"
+    },
+    {
+      "id": "2",
+      "title": "Project Two",
+      "details": "This is a sample project",
+      "activityId": "3"
+    },
+    {
+      "id": "3",
+      "title": "Project Three",
+      "details": "This is a sample project",
+      "activityId": "7"
+    },
+    {
+      "id": "5",
+      "title": "Project Five",
+      "details": "This is a sample project",
+      "activityId": "4"
+    }
+  ]
+}
