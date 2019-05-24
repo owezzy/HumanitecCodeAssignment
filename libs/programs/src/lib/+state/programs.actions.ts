@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ProgramModel } from '@humanitec/programs';
+import { ProgramModel } from '../program.model';
 
 export enum ProgramsActionTypes {
   ProgramSelected = '[Programs] Selected',
@@ -7,10 +7,9 @@ export enum ProgramsActionTypes {
 
   LoadPrograms = '[Programs] Load Programs',
   ProgramsLoaded = '[Programs] Programs Loaded',
-  ProgramsLoadError = '[Programs] Programs Load Error',
 
-  AddProgram = '[Programs] Selected',
-  ProgramAdded = '[Programs] Selected',
+  AddProgram = '[Programs] Add Program',
+  ProgramAdded = '[Programs] Added Program ',
 
   UpdateProgram = '[Programs] Update Program',
   ProgramUpdated = '[Programs] Updated Program',
@@ -30,12 +29,9 @@ export class ProgramSelected implements Action {
 
 export class LoadPrograms implements Action {
   readonly type = ProgramsActionTypes.LoadPrograms;
+  constructor() { }
 }
 
-export class ProgramsLoadError implements Action {
-  readonly type = ProgramsActionTypes.ProgramsLoadError;
-  constructor(public payload: any) {}
-}
 
 export class ProgramsLoaded implements Action {
   readonly type = ProgramsActionTypes.ProgramsLoaded;
@@ -76,7 +72,6 @@ export type ProgramsAction = Programs
   | ProgramSelected
   | LoadPrograms
   | ProgramsLoaded
-  | ProgramsLoadError
   | AddProgram
   | ProgramAdded
   | UpdateProgram
