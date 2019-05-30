@@ -21,7 +21,7 @@ export class ProgramsService {
     return `${environment.apiEndpoint}${this.model}`;
   }
 
-  geturlForId(id) {
+  getUrlForId(id) {
     return `${this.getUrl()}/${id}`;
   }
 
@@ -30,7 +30,7 @@ export class ProgramsService {
   }
 
   load(id) {
-    return this.http.get<ProgramModel>(this.geturlForId(id));
+    return this.http.get<ProgramModel>(this.getUrlForId(id));
   }
 
   loadByActivity(activityId: string) {
@@ -51,15 +51,15 @@ export class ProgramsService {
       )
   }
 
-  create(programs: ProgramModel) {
-    return this.http.post(this.getUrl(), programs);
+  create(program: ProgramModel) {
+    return this.http.post(this.getUrl(), program);
   }
 
-  update(programs: ProgramModel) {
-    return this.http.patch(this.geturlForId(programs.id), programs);
+  update(program: ProgramModel) {
+    return this.http.patch(this.getUrlForId(program.id), program);
   }
 
   delete(program: ProgramModel) {
-    return this.http.delete(this.geturlForId(program.id));
+    return this.http.delete(this.getUrlForId(program.id));
   }
 }
