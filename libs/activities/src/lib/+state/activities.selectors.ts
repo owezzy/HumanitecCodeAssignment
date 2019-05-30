@@ -1,43 +1,68 @@
-import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { ACTIVITIES_FEATURE_KEY, ActivitiesState } from './activities.reducer';
+import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
+import { ActivitiesState } from './activities.reducer';
+import * as fromActivities from './activities.reducer';
+import { ActivityModel } from '../activity-model';
+//import { selectAllPrograms } from '@humanitec/programs';
+
+// update shape of state
+export interface AppState {
+  activities: fromActivities.ActivitiesState
+}
+// add feature reducer to combined reducer
+export  const reducer: ActionReducerMap<AppState> = {
+  activities: fromActivities.activitiesReducer
+};
 
 // Lookup the 'Activities' feature state managed by NgRx
-const getActivitiesState = createFeatureSelector<ActivitiesState>(
-  ACTIVITIES_FEATURE_KEY
+export const getActivitiesState = createFeatureSelector<ActivitiesState>(
+  'activities'
 );
 
-const getLoaded = createSelector(
+export const getLoaded = createSelector(
   getActivitiesState,
-  (state: ActivitiesState) => state.loaded
-);
-const getError = createSelector(
-  getActivitiesState,
-  (state: ActivitiesState) => state.error
+  fromActivities.selectActivityIds
 );
 
-const getAllActivities = createSelector(
+
+export const getAllActivityEntities = createSelector(
   getActivitiesState,
-  getLoaded,
-  (state: ActivitiesState, isLoaded) => {
-    return isLoaded ? state.list : [];
-  }
-);
-const getSelectedId = createSelector(
-  getActivitiesState,
-  (state: ActivitiesState) => state.selectedId
-);
-const getSelectedActivities = createSelector(
-  getAllActivities,
-  getSelectedId,
-  (activities, id) => {
-    const result = activities.find(it => it['id'] === id);
-    return result ? Object.assign({}, result) : undefined;
-  }
+  fromActivities.selectActivityEntities
 );
 
-export const activitiesQuery = {
-  getLoaded,
-  getError,
-  getAllActivities,
-  getSelectedActivities
+
+export const getSelectedActivityId = createSelector(
+  getActivitiesState,
+  fromActivities.getSelectedActivityId);
+
+
+export const selectAllActivities = createSelector(
+  getActivitiesState,
+  fromActivities.selectAllActivities
+);
+
+const emptyActivity: ActivityModel = {
+  id: null,
+  name: '',
+  startDate: '',
+  endDate: ''
 };
+
+export const selectCurrentActivity = createSelector(
+  getAllActivityEntities,
+  getSelectedActivityId,
+  (activitiesEntities, activityId) => {
+    return activityId ? activitiesEntities[activityId]: emptyActivity
+  }
+);
+
+// export const selectActivitiesPrograms = createSelector(
+//   selectAllActivities,
+//   selectAllPrograms,
+//   (activities, programs) => {
+//     return activities.map(activity => {
+//       return Object.assign({},
+//         {...activity,
+//         programs: programs.filter(program => program.activityId === activity.id)})
+//     })
+//   });
+

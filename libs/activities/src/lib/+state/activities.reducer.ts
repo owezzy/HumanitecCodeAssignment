@@ -1,47 +1,73 @@
-import { ActivitiesAction, ActivitiesActionTypes } from './activities.actions';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
-export const ACTIVITIES_FEATURE_KEY = 'activities';
+import { ActivitiesAction, ActivitiesActionTypes } from './activities.actions';
+import { ActivityModel } from '../activity-model';
+
 
 /**
  * Interface for the 'Activities' data used in
  *  - ActivitiesState, and
  *  - activitiesReducer
  *
- *  Note: replace if already defined in another module
  */
 
-/* tslint:disable:no-empty-interface */
-export interface Entity {}
 
-export interface ActivitiesState {
-  list: Entity[]; // list of Activities; analogous to a sql normalized table
-  selectedId?: string | number; // which Activities record has been selected
-  loaded: boolean; // has the Activities list been loaded
-  error?: any; // last none error (if any)
+export interface ActivitiesState extends EntityState<ActivityModel> {
+  selectedActivityId: string | null;
 }
 
-export interface ActivitiesPartialState {
-  readonly [ACTIVITIES_FEATURE_KEY]: ActivitiesState;
-}
+export const adapter: EntityAdapter<ActivityModel> = createEntityAdapter<ActivityModel>();
 
-export const initialState: ActivitiesState = {
-  list: [],
-  loaded: false
-};
+
+export const initialState: ActivitiesState = adapter.getInitialState({
+  selectedActivityId: null
+});
+
 
 export function activitiesReducer(
-  state: ActivitiesState = initialState,
+  state = initialState,
   action: ActivitiesAction
 ): ActivitiesState {
   switch (action.type) {
-    case ActivitiesActionTypes.ActivitiesLoaded: {
-      state = {
-        ...state,
-        list: action.payload,
-        loaded: true
-      };
-      break;
+    case ActivitiesActionTypes.ActivitySelected: {
+      return Object.assign({}, state, {selectedActivityId: action.payload})
     }
+
+    case ActivitiesActionTypes.ActivitiesLoaded: {
+      return adapter.addAll(action.payload, state);
+    }
+
+    case ActivitiesActionTypes.ActivityAdded: {
+      return adapter.addOne(action.payload, state)
+    }
+
+    case ActivitiesActionTypes.ActivityUpdated: {
+      return adapter.upsertOne(action.payload, state)
+    }
+
+    case ActivitiesActionTypes.ActivityDeleted: {
+      return adapter.removeOne(action.payload.id, state)
+    }
+
+    default:
+      return state;
   }
-  return state;
 }
+
+
+export const getSelectedActivityId = (state: ActivitiesState) => state.selectedActivityId;
+
+// get the selector
+const { selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
+
+// select the array of widget ids
+export const selectActivityIds = selectIds;
+
+// select the dictionary of activities entities
+export const selectActivityEntities = selectEntities;
+
+// select the array of widgets
+export const selectAllActivities = selectAll;
+
+// select total activities count
+export const selecActivitiesTotal = selectTotal;
