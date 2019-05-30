@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '@env/environment';
-import { ActivityModel } from '@humanitec/activities';
+import { ActivityModel } from './activity-model';
 
 @Injectable({
   providedIn: 'root'

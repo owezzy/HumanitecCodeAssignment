@@ -1,6 +1,6 @@
-export * from './lib/+state/activities.reducer';
-export * from './lib/+state/activities.selectors';
-export * from './lib/+state/activities.effects'
-export * from './lib/activities.module';
+export {ActivitiesStateModule} from './lib/activities-state.module';
+export {ActivitiesFacade} from './lib/+state/activities.facade';
+export {ActivitiesEffects} from './lib/+state/activities.effects'
 export {ActivityModel} from './lib/activity-model'
 export {ActivityService} from './lib/activity.service'
+export { selectAllActivities } from './lib/+state/activities.selectors';

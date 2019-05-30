@@ -3,26 +3,23 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import {
-  ACTIVITIES_FEATURE_KEY,
-  initialState as activitiesInitialState,
-  activitiesReducer
-} from './+state/activities.reducer';
-import { ActivitiesEffects } from '@humanitec/activities';
+
+import { ActivitiesEffects } from './+state/activities.effects';
+import { ActivitiesComponent } from './components/activities/activities.component';
+import { ActivitiesListComponent } from './components/activities-list/activities-list.component';
+import { ActivitiesEditComponent } from './components/activities-edit/activities-edit.component';
+import { reducer } from './+state/activities.selectors';
 
 @NgModule({
   imports: [
     CommonModule,
 
     RouterModule.forChild([
-      /* {path: '', pathMatch: 'full', component: InsertYourComponentHere} */
-    ]),
-
-    StoreModule.forFeature(ACTIVITIES_FEATURE_KEY, activitiesReducer, {
-      initialState: activitiesInitialState
-    }),
-
-    EffectsModule.forFeature([ActivitiesEffects])
-  ]
+       {path: 'activities', pathMatch: 'full', component: ActivitiesComponent}
+       ]),
+    StoreModule.forRoot(reducer),
+    EffectsModule.forRoot([ActivitiesEffects])
+  ],
+  declarations: [ActivitiesComponent, ActivitiesListComponent, ActivitiesEditComponent]
 })
-export class ActivitiesModule {}
+export class ActivitiesStateModule {}

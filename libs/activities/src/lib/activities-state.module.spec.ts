@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { ActivitiesModule } from './activities.module';
+import { ActivitiesStateModule } from './activities-state.module';
 
 describe('ActivitiesModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ActivitiesModule]
+      imports: [ActivitiesStateModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(ActivitiesModule).toBeDefined();
+    expect(ActivitiesStateModule).toBeDefined();
   });
 });

@@ -1,4 +1,6 @@
 export interface ActivityModel {
   id: string;
-  detail: string;
+  name: string;
+  startDate: string;
+  endDate: string
 }
