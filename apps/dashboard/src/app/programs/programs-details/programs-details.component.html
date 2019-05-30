@@ -2,7 +2,7 @@
   <mat-card-header>
     <mat-card-title>
       <h1>
-        <span *ngIf="selectedProgram.id else prompt">Editing {{originalTitle}}</span>
+        <span *ngIf="selectedProgram.id; else prompt">Editing {{originalTitle}}</span>
         <ng-template #prompt> Create Program</ng-template>
       </h1>
     </mat-card-title>
@@ -20,15 +20,13 @@
           <textarea matInput placeholder="Details" [(ngModel)]="selectedProgram.detail" type="text" name="detail"></textarea>
         </label>
       </mat-form-field>
-
-<!--      <mat-form-field class="full-width">-->
-<!--        <mat-select placeholder="Activities" [(ngModel)]="selectedProgram.activityId" name="activityId">-->
-<!--          <mat-option *ngFor="let activity of activities" [value]="activity.id">-->
-<!--            {{activity.title}}-->
-<!--          </mat-option>-->
-<!--        </mat-select>-->
-<!--      </mat-form-field>-->
-
+      <mat-form-field class="full-width">
+                <mat-select placeholder="Activities" [(ngModel)]="selectedProgram.activityId" name="activityId">
+                  <mat-option *ngFor="let activity of activities" [value]="activity.id">
+                    {{activity.name}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <button type="submit" mat-button color="primary">Save</button>

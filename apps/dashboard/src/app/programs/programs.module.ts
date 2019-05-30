@@ -10,6 +10,7 @@ import { ProgramsListComponent } from './programs-list/programs-list.component';
 import { ProgramsRoutingModule } from './programs-routing.module';
 import { CoreDataModule } from '@humanitec/core-data';
 import { ProgramsStateModule } from '@humanitec/programs';
+import { ActivitiesStateModule } from '@humanitec/activities';
 
 @NgModule({
   imports: [
@@ -19,17 +20,18 @@ import { ProgramsStateModule } from '@humanitec/programs';
     ReactiveFormsModule,
     FormsModule,
     CoreDataModule,
-    ProgramsStateModule
+    ProgramsStateModule,
 
   ],
   declarations: [
     ProgramsComponent,
     ProgramsListComponent,
-    ProgramsDetailsComponent,
+    ProgramsDetailsComponent
 
   ],
-providers:[
+  exports: [
 
-]
+  ]
 })
-export class ProgramsModule { }
+export class ProgramsModule {
+}

@@ -14,7 +14,8 @@ export class AppComponent implements OnInit {
   isLoggedIn;
 
   links = [
-    {path: '/programs', icon: 'work', label: 'Programs'}
+    {path: '/programs', icon: 'work', label: 'Programs'},
+    {path: '/activities', icon: 'work', label: 'Activities' }
   ];
 
   constructor(private router: Router, private authService: AuthService) { }
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit {
       })
   }
 
-  logout($event){
+  logout(){
     this.authService.logout();
   }
 

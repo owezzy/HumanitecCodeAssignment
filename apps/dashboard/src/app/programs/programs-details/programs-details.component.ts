@@ -1,11 +1,13 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { ProgramModel } from '@humanitec/programs';
 import { ActivityModel } from '@humanitec/activities';
 
 @Component({
   selector: 'humanitec-programs-details',
   templateUrl: './programs-details.component.html',
-  styleUrls: ['./programs-details.component.scss']
+  styleUrls: ['./programs-details.component.scss'],
+  //changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class ProgramsDetailsComponent {
   originalTitle: string;

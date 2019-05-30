@@ -1,6 +1,7 @@
 <div class="container">
   <div class="col-50">
     <humanitec-programs-list>
+      <pre>{{programs$ | async | json }}</pre>
       [programs]="programs$ | async"
       (selected)=selectProgram($event)"
       (deleted)=deleteProgram($event)"
@@ -10,7 +11,7 @@
       <humanitec-programs-details>
         [program]="currentProgram$ | async"
         [activities]="activities$ | async"
-        (saved)=saveProgram($event)"
+        (saved)=updateProgram($event)"
         (cancelled)=resetCurrentProgram($event)"
       </humanitec-programs-details>
     </div>

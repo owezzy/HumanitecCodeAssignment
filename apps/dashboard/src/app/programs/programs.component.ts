@@ -1,26 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProgramModel, ProgramsFacade } from '@humanitec/programs';
-import { ActivityModel,  } from '@humanitec/activities';
+import { ActivityModel, ActivitiesFacade } from '@humanitec/activities';
 
 @Component({
   selector: 'humanitec-programs',
   templateUrl: './programs.component.html',
-  styleUrls: ['./programs.component.scss']
+  styleUrls: ['./programs.component.scss'],
+  //changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class ProgramsComponent implements OnInit {
 
   programs$: Observable<ProgramModel[]> = this.programsFacade.allPrograms$;
-  //activities$: Observable<ActivityModel[]> = this.activitiesFacade.allActivities$
+  activities: Observable<ActivityModel[]> = this.activitiesFacade.allActivities$;
   currentProgram$: Observable<ProgramModel> =this.programsFacade.currentProgram$;
 
-  constructor(private programsFacade: ProgramsFacade) {}
+  constructor(
+    private programsFacade: ProgramsFacade,
+    private activitiesFacade: ActivitiesFacade
+  ) {}
 
   ngOnInit() {
     this.programsFacade.loadPrograms();
+    this.activitiesFacade.loadActivities();
     this.programsFacade.mutations$.subscribe(_ => this.resetCurrentProgram());
     this.resetCurrentProgram();
-    //this.getActivities();
   }
 
   resetCurrentProgram() {
@@ -31,7 +36,7 @@ export class ProgramsComponent implements OnInit {
     this.programsFacade.selectProgram(program.id);
   }
 
-  saveProgram(program){
+  updateProgram(program){
     if (!program.id) {
       this.programsFacade.addProgram(program);
     } else {
