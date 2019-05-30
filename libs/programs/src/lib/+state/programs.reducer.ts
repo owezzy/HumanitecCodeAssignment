@@ -1,6 +1,7 @@
-import {ProgramsAction, ProgramsActionTypes } from './programs.actions';
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-import { ProgramModel } from '@humanitec/programs';
+
+import {ProgramsAction, ProgramsActionTypes } from './programs.actions';
+import { ProgramModel } from '../program.model';
 
 
 /**
@@ -8,7 +9,6 @@ import { ProgramModel } from '@humanitec/programs';
  *  - ProgramsState, and
  *  - programsReducer
  *
- *  Note: replace if already defined in another module
  */
 // define shape of state
 export interface ProgramsState extends EntityState<ProgramModel>{
@@ -19,26 +19,31 @@ export const adapter: EntityAdapter<ProgramModel> = createEntityAdapter<ProgramM
 
 // define init state
 export const initialState: ProgramsState = adapter.getInitialState({
-  selectedProgramId: null
+  selectedProgramId: null,
 });
 
 export function programsReducer(
   state = initialState, action: ProgramsAction): ProgramsState {
   switch (action.type) {
-    case ProgramsActionTypes.ProgramSelected:
-      return Object.assign({}, state, {selectedProgramId: action.payload});
+    case ProgramsActionTypes.ProgramSelected: {
+      return Object.assign({}, state, {getSelectedProgramId: action.payload});
+    }
 
-    case ProgramsActionTypes.ProgramsLoaded:
-      return adapter.addMany(action.payload, state);
+    case ProgramsActionTypes.LoadedPrograms: {
+      return adapter.addAll(action.payload, state);
+    }
 
-    case ProgramsActionTypes.ProgramAdded:
+    case ProgramsActionTypes.ProgramAdded:{
       return adapter.addOne(action.payload, state);
+    }
 
-    case ProgramsActionTypes.UpdateProgram:
+    case ProgramsActionTypes.ProgramUpdated: {
       return adapter.upsertOne(action.payload, state);
+    }
 
-    case ProgramsActionTypes.DeleteProgram:
+    case ProgramsActionTypes.ProgramDeleted: {
       return adapter.removeOne(action.payload.id, state);
+    }
 
     default:
       return state;
@@ -47,12 +52,12 @@ export function programsReducer(
 
 
 
-// selectors
+// low level selectors
 export const getSelectedProgramId = (state: ProgramsState) => state.selectedProgramId;
 
 const {selectIds, selectEntities, selectAll, selectTotal } = adapter.getSelectors();
 
-export const selectedProgramIds = selectIds;
+export const selectProgramIds = selectIds;
 export const selectedProgramEntities = selectEntities;
 export const selectAllPrograms = selectAll;
 export const selectProgramsTotal = selectTotal;

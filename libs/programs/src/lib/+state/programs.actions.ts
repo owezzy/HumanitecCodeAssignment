@@ -5,27 +5,23 @@ export enum ProgramsActionTypes {
   ProgramSelected = '[Programs] Selected',
   ProgramAction = '[Programs] Action',
 
-  LoadPrograms = '[Programs] Load Programs',
-  ProgramsLoaded = '[Programs] Programs Loaded',
+  LoadPrograms = '[Programs] Load Data',
+  LoadedPrograms = '[Programs] Data Loaded',
 
-  AddProgram = '[Programs] Add Program',
-  ProgramAdded = '[Programs] Added Program ',
+  AddProgram = '[Programs] Add Data',
+  ProgramAdded = '[Programs] Data Added',
 
-  UpdateProgram = '[Programs] Update Program',
-  ProgramUpdated = '[Programs] Updated Program',
+  UpdateProgram = '[Programs] Update Data',
+  ProgramUpdated = '[Programs] Data Updated',
 
-  DeleteProgram = '[Programs] Delete Program',
-  ProgramDeleted = '[Programs] Deleted Program',
+  DeleteProgram = '[Programs] Delete Data',
+  ProgramDeleted = '[Programs] Data Deleted',
 }
 
 export class Programs implements Action {
   readonly type = ProgramsActionTypes.ProgramAction;
 }
 
-export class ProgramSelected implements Action {
-  readonly type = ProgramsActionTypes.ProgramSelected;
-  constructor(public payload) {  }
-}
 
 export class LoadPrograms implements Action {
   readonly type = ProgramsActionTypes.LoadPrograms;
@@ -33,10 +29,17 @@ export class LoadPrograms implements Action {
 }
 
 
-export class ProgramsLoaded implements Action {
-  readonly type = ProgramsActionTypes.ProgramsLoaded;
+export class LoadedPrograms implements Action {
+  readonly type = ProgramsActionTypes.LoadedPrograms;
   constructor(public payload: ProgramModel[]) {}
 }
+
+
+export class ProgramSelected implements Action {
+  readonly type = ProgramsActionTypes.ProgramSelected;
+  constructor(public payload) {  }
+}
+
 
 export class AddProgram implements Action {
   readonly type = ProgramsActionTypes.AddProgram;
@@ -71,7 +74,7 @@ export class ProgramDeleted implements Action {
 export type ProgramsAction = Programs
   | ProgramSelected
   | LoadPrograms
-  | ProgramsLoaded
+  | LoadedPrograms
   | AddProgram
   | ProgramAdded
   | UpdateProgram

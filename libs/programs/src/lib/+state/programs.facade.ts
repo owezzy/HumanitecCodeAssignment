@@ -3,8 +3,7 @@ import { ActionsSubject, select, Store } from '@ngrx/store';
 
 import { filter } from 'rxjs/operators';
 
-import {selectAllPrograms } from '@humanitec/programs';
-import {selectCurrentProgram} from './programs.selectors';
+import { selectAllPrograms,  selectCurrentProgram } from "./programs.selectors";
 import { ProgramsState } from './programs.reducer';
 import * as ProgramsActions from './programs.actions';
 import { ProgramsActionTypes } from './programs.actions';
@@ -28,9 +27,10 @@ export class ProgramsFacade {
 
   constructor(private store: Store<ProgramsState>, private actions$: ActionsSubject) { }
 
-  selectProgram(programId) {
-    this.store.dispatch(new ProgramsActions.ProgramSelected(programId));
+  selectProgram(itemId) {
+    this.store.dispatch(new ProgramsActions.ProgramSelected(itemId));
   }
+
   loadPrograms() {
     this.store.dispatch(new ProgramsActions.LoadPrograms());
   }
