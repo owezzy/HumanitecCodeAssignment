@@ -33,8 +33,9 @@ import { ActivitiesStateModule } from '@humanitec/activities';
     MaterialModule,
     UiToolbarModule,
     UiLoginModule,
-  ProgramsStateModule,
-  ActivitiesStateModule],
+    ProgramsStateModule,
+   // ActivitiesStateModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

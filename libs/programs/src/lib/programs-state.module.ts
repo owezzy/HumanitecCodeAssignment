@@ -7,8 +7,12 @@ import  {reducer}   from './+state/programs.selectors';
 
 import { NxModule } from '@nrwl/nx';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { ProgramsService } from './programs.service';
 
 @NgModule({
+  providers:[
+    ProgramsService
+  ],
   imports: [
     CommonModule,
     NxModule.forRoot() ,

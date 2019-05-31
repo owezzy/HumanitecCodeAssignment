@@ -9,16 +9,19 @@ import { ActivitiesComponent } from './components/activities/activities.componen
 import { ActivitiesListComponent } from './components/activities-list/activities-list.component';
 import { ActivitiesEditComponent } from './components/activities-edit/activities-edit.component';
 import { reducer } from './+state/activities.selectors';
+import { ActivityService } from './activity.service';
 
 @NgModule({
+  providers: [
+    ActivityService
+  ],
   imports: [
     CommonModule,
-
     RouterModule.forChild([
        {path: 'activities', pathMatch: 'full', component: ActivitiesComponent}
        ]),
-    StoreModule.forRoot(reducer),
-    EffectsModule.forRoot([ActivitiesEffects])
+    StoreModule.forFeature('activities',reducer),
+    EffectsModule.forFeature([ActivitiesEffects])
   ],
   declarations: [ActivitiesComponent, ActivitiesListComponent, ActivitiesEditComponent]
 })

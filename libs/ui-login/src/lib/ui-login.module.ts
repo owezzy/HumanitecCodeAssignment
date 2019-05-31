@@ -3,10 +3,20 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { MaterialModule } from '@humanitec/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Route, RouterModule } from '@angular/router';
+
+export const uiLoginRoutes: Route[] = [];
 
 @NgModule({
-  imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule
+  ],
   declarations: [LoginComponent],
-  // exports: [LoginComponent]
+  entryComponents: [LoginComponent],
+  exports: [LoginComponent]
 })
 export class UiLoginModule {}
